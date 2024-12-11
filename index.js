@@ -12,21 +12,29 @@ getJSON("https://asia-southeast2-awangga.cloudfunctions.net/idbiz/data/user","lo
 function responseFunction(result){
     if (result.status === 200){
         setInner("content","Selamat datang "+result.data.name);
-        redirect("/dashboard");
+        redirect("/cust");
     }else{
         getJSON("https://asia-southeast2-awangga.cloudfunctions.net/idbiz/data/konsumen/user","login",getCookie("login"),apiResponse)
     }
     console.log(result);
 }
 
-function apiResponse(result){
-    if (result.status===200){
-        setInner("content","Selamat datang "+result.data.data.fullname);
-        redirect("/testi");
-    }else{
-        setInner("content","Silahkan lakukan pendaftaran dahulu ke IDBIZ");
-        redirect("/LoginPage");  
-       //redirect("https://wa.me/pamongdesa?text=bantuan+operator");
+function apiResponse(result) {
+    if (result.status === 200) {
+        setInner("content", "Selamat datang " + result.data.data.fullname);
+        
+        // Menunggu 3 detik sebelum redirect
+        setTimeout(() => {
+            redirect("/testi");
+        }, 3000); // 3000ms = 3 detik
+    } else {
+        setInner("content", "Silahkan lakukan pendaftaran dahulu ke IDBIZ");
+        
+        // Menunggu 3 detik sebelum redirect
+        setTimeout(() => {
+            redirect("/LoginPage");
+            // redirect("https://wa.me/pamongdesa?text=bantuan+operator");
+        }, 3000);
     }
-    
 }
+
