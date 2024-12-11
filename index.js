@@ -7,14 +7,14 @@ if (getCookie("login")===""){
     redirect("/");
 }
 
-getJSON("https://asia-southeast2-awangga.cloudfunctions.net/jualin/data/user","login",getCookie("login"),responseFunction)
+getJSON("https://asia-southeast2-awangga.cloudfunctions.net/idbiz/data/user","login",getCookie("login"),responseFunction)
 
 function responseFunction(result){
     if (result.status === 200){
         setInner("content","Selamat datang "+result.data.name);
         redirect("/dashboard");
     }else{
-        getJSON("https://asia-southeast2-awangga.cloudfunctions.net/jualin/data/konsumen/user","login",getCookie("login"),apiResponse)
+        getJSON("https://asia-southeast2-awangga.cloudfunctions.net/idbiz/data/konsumen/user","login",getCookie("login"),apiResponse)
     }
     console.log(result);
 }
@@ -24,8 +24,8 @@ function apiResponse(result){
         setInner("content","Selamat datang "+result.data.data.fullname);
         redirect("/testi");
     }else{
-        setInner("content","Silahkan lakukan pendaftaran dahulu ke Makanear Login");
-        redirect("/register");  
+        setInner("content","Silahkan lakukan pendaftaran dahulu ke IDBIZ");
+        redirect("/LoginPage");  
        //redirect("https://wa.me/pamongdesa?text=bantuan+operator");
     }
     
