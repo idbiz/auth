@@ -8,7 +8,7 @@ wauthparam.keyword="aHR0cHM6Ly93YS5tZS82Mjg5OTE3NjAwNTA/dGV4dD13aDR0NWF1dGgw";
 wauthparam.redirect="#";
 
 //delete cookies session and call whatsauth qrController
-//deleteCookie(wauthparam.tokencookiename);
+deleteCookie(wauthparam.tokencookiename);
 
 export function wAuth() { 
     qrController(wauthparam);
